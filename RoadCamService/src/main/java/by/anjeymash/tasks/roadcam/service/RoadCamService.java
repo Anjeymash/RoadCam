@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 @Path("/registrations")
 public class RoadCamService {
 	private static final Logger log = LogManager.getRootLogger();
-	private static final RoadCamDAOImpl roadCamDAO = new RoadCamDAOImpl();
+	private RoadCamDAOImpl roadCamDAO = RoadCamDAOImpl.getInstance();
 
 	// URI:
 	// /contextPath/servletPath/registrations
@@ -26,7 +26,7 @@ public class RoadCamService {
 	public List<Registration> getRegistrations() {
 		List<Registration> list = null;
 		try {
-			list = (new RoadCamDAOImpl()).getRegistrations();
+			list = roadCamDAO.getRegistrations();
 		} catch (DAOException e) {
 			log.error("Exception in DAO", e);
 		}
@@ -41,7 +41,7 @@ public class RoadCamService {
 	public List<Registration> getRegistrationsForNum(@PathParam("regNum") String regNum) {
 		List<Registration> list = null;
 		try {
-			list = (new RoadCamDAOImpl()).getRegistrationsForNum(regNum);
+			list = roadCamDAO.getRegistrationsForNum(regNum);
 		} catch (DAOException e) {
 			log.error("Exception in DAO", e);
 

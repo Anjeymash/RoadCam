@@ -27,8 +27,13 @@ public class RoadCamDAOImpl implements RoadCamDAO {
 	private static final String INSERT_REG = "INSERT INTO REGISTRATION (r_id, r_regnum, r_regdate) VALUES (?, ?, ?)";
 	private static final DateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private ConnectionPool conPool = ConnectionPool.getInstance();
+	private static final RoadCamDAOImpl instance = new RoadCamDAOImpl();
 
 	public RoadCamDAOImpl() {
+	}
+	
+	public static RoadCamDAOImpl getInstance() {
+		return instance;
 	}
 
 	@Override
